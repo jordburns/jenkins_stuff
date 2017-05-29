@@ -10,6 +10,7 @@ node {
 
     if (!installed) {
        stage("Install Pre-requesites") {
+            sh 'sudo yum install epel-release -y'
             sh 'sudo yum install python34 python-pip'
         }
         stage("Install Python Virtual Enviroment") {
