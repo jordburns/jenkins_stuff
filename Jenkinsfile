@@ -16,7 +16,7 @@ node {
             sh 'sudo pip install virtualenv'
         }
         stage("Install Python Virtual Enviroment") {
-            sh 'virtualenv --no-site-packages .'
+            sh 'virtualenv --no-site-packages ${env.workspace}'
         }
     }   
     
