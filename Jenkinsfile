@@ -33,7 +33,7 @@ node {
     stage ("Install Application Dependencies") {
         sh '''
             virtualenv cms
-            source bin/activate
+            source cms/bin/activate
             pip install -r <relative path to requirements file>
             deactivate
            '''
