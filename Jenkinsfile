@@ -9,6 +9,10 @@ node {
     def installed = fileExists 'bin/activate'
 
     if (!installed) {
+       stage("Install Pre-requesites") {
+            sh 'yum install epel-release'
+            sh 'yum install python34 python-pip'
+        }
         stage("Install Python Virtual Enviroment") {
             sh 'virtualenv --no-site-packages .'
         }
@@ -19,7 +23,7 @@ node {
     // pipeline project then you can replace this with the regular 'git url:' pipeline command.
     // The 'checkout scm' command will automatically pull down the code from the appropriate branch that triggered this build.
     stage ("Get Latest Code") {
-        checkout scm
+        git 'https://github.com/jordburns/jenkins_stuff.git'
     }
     
     // If you're using pip for your dependency management, you should create a requirements file to store a list of all depedencies.
