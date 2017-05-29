@@ -12,8 +12,8 @@ node {
        stage("Install Pre-requesites") {
             sh 'sudo yum install epel-release -y'
             sh 'sudo yum install python34 python-pip -y'
-            sh 'pip install --upgrade pip'
-            sh 'pip install virtualenv'
+            sh 'sudo pip install --upgrade pip'
+            sh 'sudo pip install virtualenv'
         }
         stage("Install Python Virtual Enviroment") {
             sh 'virtualenv --no-site-packages .'
