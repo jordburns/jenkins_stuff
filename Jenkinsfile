@@ -9,6 +9,8 @@ node {
     def installed = fileExists 'bin/activate'
 
     if (!installed) {
+    wspace = "${env.workspace}"
+    ws(wspace) {
        stage("Install Pre-requesites") {
             sh 'sudo yum install epel-release -y'
             sh 'sudo yum install python34 python-pip -y'
@@ -16,7 +18,7 @@ node {
             sh 'sudo pip install virtualenv'
         }
         stage("Install Python Virtual Enviroment") {
-            sh "virtualenv --no-site-packages ${env.workspace}"
+            sh "virtualenv --no-site-packages ."
         }
     }   
     
@@ -31,8 +33,8 @@ node {
     // If you're using pip for your dependency management, you should create a requirements file to store a list of all depedencies.
     // In this stage, you should first activate the virtual environment and then run through a pip install of the requirements file.
     stage ("Install Application Dependencies") {
-        sh "source ${env.workspace}/bin/activate"
         sh '''
+            source bin/activate
             pip install -r <relative path to requirements file>
             deactivate
            '''
@@ -73,4 +75,5 @@ node {
             }
         }
     }
+ }
 }
