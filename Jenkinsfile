@@ -31,7 +31,7 @@ node {
     // If you're using pip for your dependency management, you should create a requirements file to store a list of all depedencies.
     // In this stage, you should first activate the virtual environment and then run through a pip install of the requirements file.
     stage ("Install Application Dependencies") {
-        sh "source ${env.workspace}bin/activate"
+        sh "source ${env.workspace}/bin/activate"
         sh '''
             pip install -r <relative path to requirements file>
             deactivate
