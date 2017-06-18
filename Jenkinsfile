@@ -12,7 +12,7 @@ node {
     wspace = "${env.workspace}"
     ws(wspace) {
        stage("Install Pre-requesites") {
-            sh 'sudo apt-get install python-pip-y'
+            sh 'sudo apt-get install python-pip -y'
             sh 'sudo pip install --upgrade pip'
             sh 'sudo pip install virtualenv'
         }
