@@ -6,10 +6,12 @@
 node {
     // It's often recommended to run a django project from a virtual environment.
     // This way you can manage all of your depedencies without affecting the rest of your system.
+    
+    wspace = "/srv/atf_screeds"
+    
     def installed = fileExists 'bin/activate'
 
     if (!installed) {
-    wspace = "${env.workspace}"
     ws(wspace) {
        stage("Install Pre-requesites") {
             sh 'sudo apt-get install python-pip -y'
