@@ -25,9 +25,7 @@ node {
         wspace = '/srv/atf_screeds/'
         ws(wspace) {
         git 'https://github.com/jordburns/jenkins_stuff.git'
-                stage("Install Python Virtual Enviroment") {
-            sh "virtualenv --no-site-packages ."
-            }
+        sh "virtualenv --no-site-packages ."
        }
     }
     
