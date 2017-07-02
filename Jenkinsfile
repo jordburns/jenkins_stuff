@@ -14,21 +14,24 @@ node {
             sh 'sudo apt-get install python-pip -y'
             sh 'sudo pip install --upgrade pip'
             sh 'sudo -H pip install virtualenv'
-        }
-        stage("Install Python Virtual Enviroment") {
-            wspace = "/srv/atf_screeds/"
-            ws(wspace){
-            sh "virtualenv --no-site-packages ."
-            }
-        }   
+       }
+     }   
     
     // The stage below is attempting to get the latest version of our application code.
     // Since this is a multi-branch project the 'checkout scm' command is used. If you're working with a standard 
     // pipeline project then you can replace this with the regular 'git url:' pipeline command.
     // The 'checkout scm' command will automatically pull down the code from the appropriate branch that triggered this build.
     stage ("Get Latest Code") {
+        wspace = '/srv/atf_screeds/'
+        ws(wspace) {
         git 'https://github.com/jordburns/jenkins_stuff.git'
+                stage("Install Python Virtual Enviroment") {
+            sh "virtualenv --no-site-packages ."
+            }
+       }
     }
+    
+       
     
     // If you're using pip for your dependency management, you should create a requirements file to store a list of all depedencies.
     // In this stage, you should first activate the virtual environment and then run through a pip install of the requirements file.
