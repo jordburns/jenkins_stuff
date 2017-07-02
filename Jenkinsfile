@@ -7,21 +7,20 @@ node {
     // It's often recommended to run a django project from a virtual environment.
     // This way you can manage all of your depedencies without affecting the rest of your system.
     
-    wspace = "/srv/atf_screeds"
-    
-    def installed = fileExists 'bin/activate'
+    def installed = fileExists '/srv/atf_screeds/bin/activate'
 
     if (!installed) {
-    ws(wspace) {
        stage("Install Pre-requesites") {
             sh 'sudo apt-get install python-pip -y'
             sh 'sudo pip install --upgrade pip'
             sh 'sudo -H pip install virtualenv'
         }
         stage("Install Python Virtual Enviroment") {
+            wspace = "srv/atf_screeds/"
+            ws(wspace){
             sh "virtualenv --no-site-packages ."
-        }
-    }   
+            }
+        }   
     
     // The stage below is attempting to get the latest version of our application code.
     // Since this is a multi-branch project the 'checkout scm' command is used. If you're working with a standard 
