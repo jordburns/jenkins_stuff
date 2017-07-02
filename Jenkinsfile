@@ -16,7 +16,7 @@ node {
             sh 'sudo -H pip install virtualenv'
         }
         stage("Install Python Virtual Enviroment") {
-            wspace = "srv/atf_screeds/"
+            wspace = "/srv/atf_screeds/"
             ws(wspace){
             sh "virtualenv --no-site-packages ."
             }
